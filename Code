@@ -22,6 +22,7 @@ def validate_quantity(input_text):
 
 
 def place_order():
+    global receipt_counter
     # Get input values
     name = entry_name.get()
     item = selected_item.get()
@@ -95,9 +96,9 @@ def generate_receipt(order):
 root = tk.Tk()
 root.title("Julie's party hire")
 
-# Set the background color 
+# Set the background color for the treeview
 style = ttk.Style()
-style.configure("Treeview", background="White")
+style.configure("Treeview", background="white")
 
 # Create the treeview
 tree = ttk.Treeview(root)
@@ -114,7 +115,7 @@ scrollbar.pack(side="right", fill="y")
 tree.configure(yscrollcommand=scrollbar.set)
 
 # Create a frame for the input fields and buttons
-input_frame = tk.Frame(root, bg="pink")
+input_frame = tk.Frame(root, bg="white")
 input_frame.pack(padx=10, pady=5)
 
 # Customer Name
@@ -128,7 +129,7 @@ lbl_item = tk.Label(input_frame, text="Item Hired:")
 lbl_item.grid(row=1, column=0, padx=10, pady=5, sticky="w")
 items = ["Tables", "Chairs", "Decorations", "Sound System", "BBQ"]
 selected_item = tk.StringVar(value=items[0])
-dropdown_item = tk.OptionMenu(input_frame, selected_item, *items)
+dropdown_item = ttk.Combobox(input_frame, textvariable=selected_item, values=items, state="readonly")
 dropdown_item.grid(row=1, column=1, padx=10, pady=5)
 
 # Quantity
